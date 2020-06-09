@@ -1,0 +1,348 @@
+{% extends 'layout.html' %} {% block title %}Shop{% endblock %} {% block
+main_content %}
+<!--================End Main Header Area =================-->
+<section class="banner_area">
+  <div class="container">
+    <div class="banner_text">
+      <h3>Shop</h3>
+      <ul>
+        <li><a href="{{ url_for('page_index') }}">Home</a></li>
+        <li><a href="{{ url_for('page_shop') }}">Shop</a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+<!--================End Main Header Area =================-->
+
+<!-- ===============Cart area=============== -->
+<section>
+  <div class="container">
+    <div class="dropdown" style="text-align: right; z-index: 1;">
+      <button
+        style="
+          float: left;
+          margin-top: 15px;
+          background-color: #f195b2;
+          border-color: whitesmoke;
+        "
+        class="btn btn-primary dropdown-toggle"
+        type="button"
+        id="dropdownMenuButton"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        Your Cart
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <div class="row" style="width: 380px;">
+          <div class="container">
+            {% if selected_products_list %} {% for selected_product in
+            selected_products_list %}
+            <div class="col-md-12">
+              <img
+                style="width: 80px; height: 80px;"
+                src="{{ url_for('static', filename = 'img/cake-feature/' + selected_product['Image']) }}"
+                alt=""
+              />
+              <div class="btn" style="text-align: left;">
+                {{ selected_product['Name'] }}<br />${{
+                selected_product['Price'] }}<br />
+                <form method="POST">
+                  <input
+                    type="hidden"
+                    name="shop_tps_ID_1"
+                    value="{{ selected_product['ID'] }}"
+                  />
+                  <div
+                    class="row"
+                    style="
+                      display: flex;
+                      align-items: center;
+                      margin: 0px 0px 5px;
+                    "
+                  >
+                    <input
+                      type="tel"
+                      name="shop_tps_Quantity_1"
+                      value="{{ selected_product['Quantity'] }}"
+                      min="0"
+                      style="
+                        width: 40px;
+                        height: 30px;
+                        text-align: center;
+                        border: 1px solid black;
+                        border-radius: 0px;
+                      "
+                    />
+                  </div>
+                  <button class="btn pest_btn" type="submit">
+                    Refresh
+                  </button>
+                </form>
+              </div>
+            </div>
+            {% endfor %}
+            <span style="margin-left: 10px;"
+              ><strong>Total Price: ${{ total_price }}.00</strong>
+            </span>
+            <div style="width: 80%; text-align: center;">
+              <form method="POST" action="{{ url_for('page_cart') }}">
+                &nbsp;&nbsp;&nbsp;<button class="btn pest_btn" type="submit">
+                  View Your Cart
+                </button>
+              </form>
+            </div>
+            {% else %}
+            <span>Your cart is empty</span>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ===============End Cart area=============== -->
+
+<!--================Product Area =================-->
+<section class="product_area p_100">
+  <div class="container">
+    <div class="row product_inner_row">
+      <div class="col-lg-9">
+        <div class="row m0 product_task_bar">
+          <div class="product_task_inner">
+            <div class="float-left">
+              <a class="active" href="#"
+                ><i class="fa fa-th-large" aria-hidden="true"></i
+              ></a>
+              <a href="#"><i class="fa fa-th-list" aria-hidden="true"></i></a>
+              <span>Showing 1 - 10 of 55 results</span>
+            </div>
+            <div class="float-right">
+              <h4>Sort by :</h4>
+              <select class="short">
+                <option data-display="Default">Default</option>
+                <option value="1">Default</option>
+                <option value="2">Default</option>
+                <option value="4">Default</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="row product_item_inner">
+          {% for product in PRODUCTS_LIST %}
+          <div class="col-lg-4 col-md-4 col-6">
+            <form method="POST">
+              <div class="cake_feature_item">
+                <div class="cake_img">
+                  <img
+                    src="{{ url_for('static', filename='img/cake-feature/' + product['Image']) }}"
+                    alt=""
+                  />
+                </div>
+                <div class="cake_text">
+                  <input
+                    type="hidden"
+                    value="{{ product['ID'] }}"
+                    name="shop_tps_ID"
+                  />
+                  <h4>${{ product['Unit_Price'] }}</h4>
+                  <h3>{{ product['Name'] }}</h3>
+                  <input type="hidden" value="1" name="shop_tps_Quantity" />
+                  <button type="submit" class="btn pest_btn">
+                    Add to cart
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+          {% endfor %}
+        </div>
+        <div class="product_pagination">
+          <div class="left_btn">
+            <a href="#"><i class="lnr lnr-arrow-left"></i> New posts</a>
+          </div>
+          <div class="middle_list">
+            <nav aria-label="Page navigation example">
+              <ul class="pagination">
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item active">
+                  <a class="page-link" href="#">2</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">...</a></li>
+                <li class="page-item"><a class="page-link" href="#">12</a></li>
+              </ul>
+            </nav>
+          </div>
+          <div class="right_btn">
+            <a href="#">Older posts <i class="lnr lnr-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="product_left_sidebar">
+          <aside class="left_sidebar search_widget">
+            <div class="input-group">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter Search Keywords"
+              />
+              <div class="input-group-append">
+                <button class="btn" type="button">
+                  <i class="icon icon-Search"></i>
+                </button>
+              </div>
+            </div>
+          </aside>
+          <aside class="left_sidebar p_catgories_widget">
+            <div class="p_w_title">
+              <h3>Product Categories</h3>
+            </div>
+            <ul class="list_style">
+              <li>
+                <a href="{{ url_for('page_shop') }}"
+                  >All Products ({{ total_quantity }})</a
+                >
+              </li>
+              {% for keys, values in category_products_list.items() %}
+              <li>
+                {{ keys[0] }} ({{ values }})
+              </li>
+              {% endfor %}
+            </ul>
+          </aside>
+          <aside class="left_sidebar p_sale_widget">
+            <div class="p_w_title">
+              <h3>Top Sale Products</h3>
+            </div>
+            <div class="media">
+              <div class="d-flex">
+                <img
+                  style="width: 80px; height: 80px;"
+                  src="{{ url_for('static', filename='img/cake-feature/c-feature-10.jpg') }}"
+                  alt=""
+                />
+              </div>
+              <div class="media-body">
+                <a href="#"><h4>Seasame Donut</h4></a>
+                <ul class="list_style">
+                  <li>
+                    <i class="fa fa-star-o"></i>
+                  </li>
+                  <li>
+                    <i class="fa fa-star-o"></i>
+                  </li>
+                  <li>
+                    <i class="fa fa-star-o"></i>
+                  </li>
+                  <li>
+                    <i class="fa fa-star-o"></i>
+                  </li>
+                  <li>
+                    <i class="fa fa-star-o"></i>
+                  </li>
+                </ul>
+                <h5>$10.00</h5>
+              </div>
+            </div>
+            <div class="media">
+              <div class="d-flex">
+                <img
+                  style="width: 80px; height: 80px;"
+                  src="{{ url_for('static', filename='img/cake-feature/c-feature-11.jpg') }}"
+                  alt=""
+                />
+              </div>
+              <div class="media-body">
+                <a href="#"><h4>Banana Crepe</h4></a>
+                <ul class="list_style">
+                  <li>
+                    <i class="fa fa-star-o"></i>
+                  </li>
+                  <li>
+                    <i class="fa fa-star-o"></i>
+                  </li>
+                  <li>
+                    <i class="fa fa-star-o"></i>
+                  </li>
+                  <li>
+                    <i class="fa fa-star-o"></i>
+                  </li>
+                  <li>
+                    <i class="fa fa-star-o"></i>
+                  </li>
+                </ul>
+                <h5>$20.00</h5>
+              </div>
+            </div>
+            <div class="media">
+              <div class="d-flex">
+                <img
+                  style="width: 80px; height: 80px;"
+                  src="{{ url_for('static', filename='img/cake-feature/c-feature-23.jpg') }}"
+                  alt=""
+                />
+              </div>
+              <div class="media-body">
+                <a href="#"><h4>Passion Fruit Mousse</h4></a>
+                <ul class="list_style">
+                  <li>
+                    <i class="fa fa-star-o"></i>
+                  </li>
+                  <li>
+                    <i class="fa fa-star-o"></i>
+                  </li>
+                  <li>
+                    <i class="fa fa-star-o"></i>
+                  </li>
+                  <li>
+                    <i class="fa fa-star-o"></i>
+                  </li>
+                  <li>
+                    <i class="fa fa-star-o"></i>
+                  </li>
+                </ul>
+                <h5>$20.00</h5>
+              </div>
+            </div>
+            <div class="media">
+              <div class="d-flex">
+                <img
+                  style="width: 80px; height: 80px;"
+                  src="{{ url_for('static', filename='img/cake-feature/c-feature-6.jpg') }}"
+                  alt=""
+                />
+              </div>
+              <div class="media-body">
+                <a href="#"><h4>Garlic Bread</h4></a>
+                <ul class="list_style">
+                  <li>
+                    <i class="fa fa-star-o"></i>
+                  </li>
+                  <li>
+                    <i class="fa fa-star-o"></i>
+                  </li>
+                  <li>
+                    <i class="fa fa-star-o"></i>
+                  </li>
+                  <li>
+                    <i class="fa fa-star-o"></i>
+                  </li>
+                  <li>
+                    <i class="fa fa-star-o"></i>
+                  </li>
+                </ul>
+                <h5>$18.00</h5>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--================End Product Area =================-->
+
+{% endblock main_content %}

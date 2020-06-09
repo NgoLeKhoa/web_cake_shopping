@@ -1,0 +1,79 @@
+{% extends "layout.html" %} {% block title %}Login{% endblock %} {% block
+main_content %}
+<!--================End Main Header Area =================-->
+<section class="banner_area">
+  <div class="container">
+    <div class="banner_text">
+      <h3>Contact Us</h3>
+      <ul>
+        <li><a href="{{ url_for('page_index') }}">Home</a></li>
+        <li><a href="{{ url_for('page_signup') }}">Sign Up</a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+<!--================End Main Header Area =================-->
+
+<!--================Contact Form Area =================-->
+<section class="contact_form_area p_100">
+  <div class="container">
+    <div class="main_title">
+      <h2>New customer</h2>
+      <h5>
+        Sign up for new account.
+      </h5>
+    </div>
+    <div class="container" style="width: 500px; height: 600px; margin: 0 auto;">
+      <form method="POST">
+        {{ form.csrf_token }}
+        <div class="form-group">
+          {{ form.Name.label }} {{ form.Name(class_="form-control") }} {% for
+          message in form.Name.errors %}
+          <div style="color: red;">{{ message }}</div>
+          {% endfor %}
+        </div>
+        <div class="form-group">
+          {{ form.Username.label }} {{ form.Username(class_="form-control") }} {%
+          for message in form.Username.errors %}
+          <div style="color: red;">{{ message }}</div>
+          {% endfor %}
+        </div>
+        <div class="form-group">
+          {{ form.Email.label }} {{ form.Email(class_="form-control") }} {% for
+          message in form.Email.errors %}
+          <div style="color: red;">{{ message }}</div>
+          {% endfor %}
+        </div>
+        <div class="form-group">
+          {{ form.Password.label }} {{ form.Password(class_="form-control") }}
+          {% for message in form.Password.errors %}
+          <div style="color: red;">{{ message }}</div>
+          {% endfor %}
+        </div>
+        <div class="form-group">
+          {{ form.Confirm.label }} {{ form.Confirm(class_="form-control") }} {%
+          for message in form.Confirm.errors %}
+          <div style="color: red;">{{ message }}</div>
+          {% endfor %}
+        </div>
+        <div class="form-group">
+          {{ form.Phone.label }} {{ form.Phone(class_="form-control") }}
+          {% for message in form.Phone.errors %}
+          <div style="color: red;">{{ message }}</div>
+          {% endfor %}
+        </div>
+        <div class="form-group">
+          {{ form.Address.label }} {{ form.Address(class_="form-control") }} {%
+          for message in form.Address.errors %}
+          <div style="color: red;">{{ message }}</div>
+          {% endfor %}
+        </div>
+        <div class="form-group">
+          {{ form.Signup(class_="btn pest_btn") }}
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+<!--================End Contact Form Area =================-->
+{% endblock main_content %}

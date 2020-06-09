@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link
+      rel="icon"
+      href="{{ url_for('static', filename='img/fav-icon.png') }}"
+      type="image/x-icon"
+    />
+    <title>{% block title %}Home{% endblock title %} - Cake Bakery</title>
+    <!-- Icon css link -->
+    <link
+      href="{{ url_for('static', filename='css/font-awesome.min.css') }}"
+      rel="stylesheet"
+    />
+    <link
+      href="{{ url_for('static', filename='vendors/linearicons/style.css') }}"
+      rel="stylesheet"
+    />
+    <link
+      href="{{ url_for('static', filename='vendors/flat-icon/flaticon.css') }}"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap -->
+    <link
+      href="{{ url_for('static', filename='css/bootstrap.min.css') }}"
+      rel="stylesheet"
+    />
+
+    <!-- Rev slider css -->
+    <link
+      href="{{ url_for('static', filename='vendors/revolution/css/settings.css') }}"
+      rel="stylesheet"
+    />
+    <link
+      href="{{ url_for('static', filename='vendors/revolution/css/layers.css') }}"
+      rel="stylesheet"
+    />
+    <link
+      href="{{ url_for('static', filename='vendors/revolution/css/navigation.css') }}"
+      rel="stylesheet"
+    />
+    <link
+      href="{{ url_for('static', filename='vendors/animate-css/animate.css') }}"
+      rel="stylesheet"
+    />
+
+    <!-- Extra plugin css -->
+    <link
+      href="{{ url_for('static', filename='vendors/owl-carousel/owl.carousel.min.css') }}"
+      rel="stylesheet"
+    />
+    <link
+      href="{{ url_for('static', filename='vendors/magnifc-popup/magnific-popup.css') }}"
+      rel="stylesheet"
+    />
+    <link
+      href="{{ url_for('static', filename='vendors/nice-select/css/nice-select.css') }}"
+      rel="stylesheet"
+    />
+
+    <link
+      href="{{ url_for('static', filename='css/style.css') }}"
+      rel="stylesheet"
+    />
+    <link
+      href="{{ url_for('static', filename='css/responsive.css') }}"
+      rel="stylesheet"
+    />
+    <!-- CKEditor -->
+    <script src="{{ url_for('static', filename='js/ckeditor/ckeditor.js') }}"></script>
+    
+  </head>
+  <body>
+    <script src="{{ url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>
+    <script>
+      jQuery(function ($) {
+          let path = window.location.href;
+          $(".mn a").each(function () {
+              if (this.href === path) {
+                  $(this).parent().addClass("active")
+              }
+          });
+      });
+    </script>
+    {% block main_header %} {% include 'parts/main_header.html' %} {% endblock
+    main_header %} {% block main_content %} {% endblock main_content %} {% block
+    footer %} {% include 'parts/footer.html' %} {% endblock footer %} {% block
+    script %} {% include 'parts/script.html' %} {% endblock script %}
+  </body>
+</html>

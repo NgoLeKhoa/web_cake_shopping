@@ -1,0 +1,105 @@
+{% extends "layout.html" %} {% block title %}Contact{% endblock title %} {%
+block main_content %}
+<!--================End Main Header Area =================-->
+<section class="banner_area">
+  <div class="container">
+    <div class="banner_text">
+      <h3>Contact Us</h3>
+      <ul>
+        <li><a href="{{ url_for('page_index') }}">Home</a></li>
+        <li><a href="{{ url_for('page_contact') }}">Contact Us</a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+<!--================End Main Header Area =================-->
+
+<!--================Contact Form Area =================-->
+<section class="contact_form_area p_100">
+  <div class="container">
+    <div class="main_title">
+      <h2>Get In Touch</h2>
+      <h5>
+        Do you have anything in your mind to let us know? Kindly don't delay to
+        connect to us by means of our contact form.
+      </h5>
+    </div>
+    <div class="row">
+      <div class="col-lg-7">
+        <form class="row contact_us_form" method="POST">
+          {{ form.csrf_token }}
+          <div class="form-group col-md-6">
+			{{ form.Name.label }} {{ form.Name(class_="form-control") }}
+			{% for message in form.Name.errors %}
+			<div style="color: red;">{{ message }}</div>
+			{% endfor %}
+          </div>
+          <div class="form-group col-md-6">
+			{{ form.Email.label }} {{ form.Email(class_="form-control") }}
+			{% for message in form.Email.errors %}
+			<div style="color: red;">{{ message }}</div>
+			{% endfor %}
+          </div>
+          <div class="form-group col-md-12">
+			{{ form.Subject.label }} {{ form.Subject(class_="form-control") }}
+			{% for message in form.Subject.errors %}
+			<div style="color: red;">{{ message }}</div>
+			{% endfor %}
+          </div>
+          <div class="form-group col-md-12">
+			{{ form.Details.label }} {{ form.Details(class_="form-control") }}
+			{% for message in form.Details.errors %}
+			<div style="color: red;">{{ message }}</div>
+			{% endfor %}
+          </div>
+          <div class="form-group col-md-12">
+            {{ form.Submit(class_="btn order_s_btn form-control btn-block") }}
+		  </div>
+		</form>
+		{{ message }}
+      </div>
+      <div class="col-lg-4 offset-md-1">
+        <div class="contact_details">
+          <div class="contact_d_item">
+            <h3>Address:</h3>
+            <p>
+              2 Công xã Paris, Bến Nghé, Quận 1 <br />
+              TP. Hồ Chí Minh, Việt Nam
+            </p>
+          </div>
+          <div class="contact_d_item">
+            <h5>Phone Number:</h5>
+            <p>0808080878</p>
+          </div>
+          <div class="contact_d_item">
+            <h5>Email:</h5>
+            <p>cakebakery@gmail.com</p>
+          </div>
+          <div class="contact_d_item">
+            <h3>Open Hours:</h3>
+            <p>8:00 a.m – 10:00 p.m</p>
+            <p>Monday – Sunday</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--================End Contact Form Area =================-->
+
+<!--================ Google Maps Area =================-->
+<section style="margin: 0px 20px">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.4183872737094!2d106.69696531480076!3d10.779232992319619!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f37e58a35eb%3A0xdb269a1e02dcbb23!2zTmjDoCBUaOG7nSDEkOG7qWMgQsOg!5e0!3m2!1svi!2s!4v1590595181828!5m2!1svi!2s"
+      width="100%"
+      height="500px"
+      frameborder="0"
+      style="border: 0;"
+      allowfullscreen=""
+      aria-hidden="false"
+      tabindex="0"
+    ></iframe>
+</section>
+<!--================End Google Maps Area =================-->
+
+{% endblock main_content %}

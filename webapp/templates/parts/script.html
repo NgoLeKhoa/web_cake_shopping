@@ -1,0 +1,52 @@
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="{{ url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+<!-- Rev slider js -->
+<script src="{{ url_for('static', filename='vendors/revolution/js/jquery.themepunch.tools.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendors/revolution/js/jquery.themepunch.revolution.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendors/revolution/js/extensions/revolution.extension.actions.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendors/revolution/js/extensions/revolution.extension.video.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendors/revolution/js/extensions/revolution.extension.slideanims.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendors/revolution/js/extensions/revolution.extension.layeranimation.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendors/revolution/js/extensions/revolution.extension.navigation.min.js') }}"></script>
+<!-- Extra plugin js -->
+<script src="{{ url_for('static', filename='vendors/owl-carousel/owl.carousel.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendors/magnifc-popup/jquery.magnific-popup.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendors/datetime-picker/js/moment.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendors/datetime-picker/js/bootstrap-datetimepicker.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendors/nice-select/js/jquery.nice-select.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendors/jquery-ui/jquery-ui.min.js') }}"></script>
+
+<!--gmaps Js-->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
+<script src="{{ url_for('static', filename='js/gmaps.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/map-active.js') }}"></script>
+
+<!-- contact js -->
+<script src="{{ url_for('static', filename='js/jquery.form.js') }}"></script>
+<script src="{{ url_for('static', filename='js/jquery.validate.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/contact.js') }}"></script>
+
+<script src="{{ url_for('static', filename='vendors/lightbox/simpleLightbox.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendors/isotope/imagesloaded.pkgd.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendors/isotope/isotope.pkgd.min.js') }}"></script>
+
+<script src="{{ url_for('static', filename='js/theme.js') }}"></script>
+
+<script>
+    jQuery(function ($) {
+        let path = windows.location.href;
+        $(".mn a").each(function () {
+            if (this.href === path) {
+                $(this).parent().addClass("active")
+            }
+        });
+    });
+</script>
+
+
+
+
+

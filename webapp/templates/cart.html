@@ -1,0 +1,102 @@
+{% extends "layout.html" %} 
+{% block title %}Cart{% endblock title %}
+{% block main_content %}
+
+<!--================End Main Header Area =================-->
+<section class="banner_area">
+    <div class="container">
+        <div class="banner_text">
+            <h3>Cart</h3>
+            <ul>
+                <li><a href="{{ url_for('page_index') }}">Home</a></li>
+                <li><a href="{{ url_for('page_cart') }}">Cart</a></li>
+            </ul>
+        </div>
+    </div>
+</section>
+<!--================End Main Header Area =================-->
+
+<!--================Cart Table Area =================-->
+<section class="cart_table_area p_100">
+    <div class="container">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Thumbnail</th>
+                        <th scope="col">Product</th>
+                        <th scope="col">Unit Price</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Total</th>
+                    </tr>
+                </thead>
+                    {% for selected_product in selected_products_list %}
+                    <tr>
+                        <td style="width: 120px; height: 100px;">
+                            <img
+                                style="width: 60px; height: 60px;"
+                                alt=""
+                                src="{{ url_for('static', filename = 'img/cake-feature/' + selected_product['Image']) }}"
+                            />
+                        </td>
+                        <td>{{ selected_product['Name'] }}</td>
+                        <td>${{ selected_product['Unit_Price'] }}.00</td>
+                        <td>
+                            <form method="POST">
+                                <input
+                                    type="hidden"
+                                    name="cart_tps_ID"
+                                    value="{{ selected_product['ID'] }}"
+                                />
+                                <input
+                                    style="width: 50px;"
+                                    type="tel"
+                                    name="cart_tps_Quantity"
+                                    min="0"
+                                    value="{{ selected_product['Quantity'] }}"
+                                />
+                                <button class="btn pest_btn" type="submit">
+                                    Refresh
+                                </button>
+                            </form>
+                        </td>
+                        <td>
+                            ${{ selected_product['Quantity'] *
+                            selected_product['Unit_Price'] }}.00
+                        </td>
+                    </tr>
+					{% endfor %}
+					<tr></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="row cart_total_inner">
+            <div class="col-lg-7"></div>
+            <div class="col-lg-5">
+                <div class="cart_total_text">
+                    <div class="cart_head">
+                        Cart Total
+                    </div>
+                    <div class="total">
+                        <h4>Total <span>${{ total_price }}.00</span></h4>
+                    </div>
+                    <div class="cart_footer">
+                        <form method="post">
+                            <input
+                                type="hidden"
+                                name="cart_tps_preceed_to_checkout_btn"
+                                value="success"
+                            />
+                            <button class="btn pest_btn" type="submit">
+                                Proceed to Checkout
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================End Cart Table Area =================-->
+
+{% endblock main_content %}
